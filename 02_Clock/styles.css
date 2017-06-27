@@ -43,4 +43,8 @@ body {
     background:black;
     position: absolute;
     top:50%;
+    transform-origin: 100%;     /* Moves the rotation point to the right-hand side of the element. Defaults to 50%. */
+    transform: rotate(90deg);   /* The divs start out horizontal, we need them to start pointing at 12 o'clock. */
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);    /* Gives the forward-back jerk motion */
 }
