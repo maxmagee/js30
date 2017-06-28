@@ -19,25 +19,60 @@ const inventors = [
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    console.table(inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600));
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    console.log(inventors.map(inventor => `${inventor.first} ${inventor.last}`));
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    console.table(inventors.sort((a, b) => a.year - b.year));
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    console.log(inventors.reduce((acc, inventor) => {
+        return acc + (inventor.passed - inventor.year);
+    }, 0));
 
     // 5. Sort the inventors by years lived
+    console.table(inventors.sort((a, b) => {
+        return (a.passed - a.year) - (b.passed - b.year);
+    }));
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    /* Run this from the console
+    const links = Array.from(document.querySelector('.mw-category').querySelectorAll('a'));
+    // You could also do this like this: [...document.querySelector('.mw-category').querySelectorAll('a')]
+
+    const de = links.map(link => link.textContent)
+                    .filter(streetName => streetName.includes('de'));
+
+    console.log(de);*/
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    console.table(
+        people.sort((a, b) => {
+            const nameA = a.split(',')[0].toUpperCase();
+            const nameB = b.split(',')[0].toUpperCase();
+
+            if (nameA > nameB) return 1;
+            if (nameA < nameB) return -1;
+            
+            return 0;
+        })
+    );
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    
+    const transportation = data.reduce((obj, item) => {
+        obj[item] = obj.hasOwnProperty(item) ? obj[item] + 1 : 1;
+        return obj;
+    }, {});
+
+    console.log(transportation);
